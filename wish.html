@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎉 Happy Birthday VARSHA! 🎂</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: "Poppins", sans-serif;
+      overflow: hidden;
+      color: white;
+      text-align: center;
+      position: relative;
+    }
+    body {
+      background: url('varsha.jpg') no-repeat center center fixed;
+      background-size: cover;
+      transition: background-size 0.25s;
+    }
+    @media (min-width: 601px) {
+      body { background-size: contain; background-position: center; }
+    }
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.35);
+      z-index: 0;
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+    h1 {
+      font-size: 3em;
+      animation: glow 2s ease-in-out infinite alternate;
+      margin: 0;
+      text-shadow: 0 0 20px #ff4da6, 0 0 30px #ff80b0;
+    }
+    h2 {
+      margin-top: 10px;
+      font-size: 1.8em;
+      color: #ffd6e4;
+      margin-bottom: 25px;
+    }
+    #message {
+      font-size: 1.5em;
+      max-width: 600px;
+      white-space: pre-wrap;
+      line-height: 1.6;
+      margin-bottom: 30px;
+      text-shadow: 0 0 8px #00000088;
+    }
+    button {
+      padding: 14px 40px;
+      border: none;
+      border-radius: 25px;
+      background-color: #ff4da6;
+      color: white;
+      font-size: 1.3em;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.3s;
+      box-shadow: 0 4px 15px #ff4da6aa;
+      user-select: none;
+    }
+    button:hover {
+      background-color: #ff80b0;
+      transform: scale(1.07);
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #fff, 0 0 20px #ff80b0, 0 0 30px #ff4da6; }
+      to { text-shadow: 0 0 20px #fff, 0 0 30px #ff99cc, 0 0 40px #ff4da6; }
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 2em; }
+      h2 { font-size: 1.2em; }
+      #message { font-size: 1.1em; max-width: 90vw; }
+      button { font-size: 1.1em; padding: 12px 30px; }
+      body { background-size: cover; }
+    }
+    /* Decorations */
+    .confetti, .balloon, .firework {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      z-index: 99;
+    }
+    .confetti {
+      width: 8px; height: 8px; border-radius: 12px; animation: fall 3.2s linear;
+    }
+    @keyframes fall {
+      0%   { transform: translateY(-3vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(93vh) rotate(620deg); opacity: 0.1; }
+    }
+    .balloon {
+      bottom: -90px; width: 38px; height: 55px;
+      background: radial-gradient(circle at 30% 30%, #ff4da6, #ff0066);
+      border-radius: 52% 52% 55% 52% / 63% 63% 35% 39%;
+      animation: floatUp 7s ease-in;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(-95vh) rotate(260deg); opacity: 0; }
+    }
+    /* Fireworks - enter animation */
+    .fw-spark {
+      position: absolute;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: yellow;
+      pointer-events: none;
+      opacity: 0.85;
+      animation: fw-burst 1.2s ease-out forwards;
+      z-index:999;
+    }
+    @keyframes fw-burst {
+      from { transform: scale(0.3) translateY(0px); opacity:1; }
+      to   { transform: scale(3.5) translateY(-160px); opacity:0;}
+    }
+  </style>
+</head>
+<body>
+  <div class="content">
+    <h1>🎉 Happy Birthday VARSHA! 🎂</h1>
+    <h2>Wishing you a day full of love, laughter, and happiness 💖</h2>
+    <div id="message"></div>
+    <button onclick="celebrate()">🎈 Celebrate 🎈</button>
+  </div>
+  <audio id="music" src="Suvvi Suvvi.mp3"></audio>
+  <script>
+    // Landing fireworks animation
+    function burstFirework() {
+      const count = 12 + Math.floor(Math.random()*6);
+      const viewportW = window.innerWidth;
+      const viewportH = window.innerHeight;
+      const x0 = Math.random()*viewportW*0.7 + viewportW*0.15;
+      const y0 = Math.random()*viewportH*0.4 + viewportH*0.25;
+      for (let i=0;i<count;i++) {
+        const spark = document.createElement("div");
+        spark.className = "fw-spark";
+        spark.style.background = `hsl(${Math.random()*360},85%,62%)`;
+        const theta = (2*Math.PI*i)/count;
+        const dx = Math.cos(theta)*62;
+        const dy = Math.sin(theta)*62;
+        spark.style.left = (x0+dx) + 'px';
+        spark.style.top  = (y0+dy) + 'px';
+        document.body.appendChild(spark);
+        setTimeout(()=>spark.remove(),1200);
+      }
+    }
+    // Repeat fireworks on enter for 1.5s
+    setTimeout(()=>burstFirework(), 260);
+    setTimeout(()=>burstFirework(), 850);
+    setTimeout(()=>burstFirework(), 1400);
+
+    // Birthday message code
+    const text = `Dear VARSHA,\nWishing you a magical birthday filled with happiness, laughter, and love! 💖💛\nMay all your dreams come true and your heart be full of joy today and always! 🌸`;
+    let i = 0;
+    const speed = 30;
+    function typeMessage() {
+      if (i < text.length) {
+        document.getElementById("message").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeMessage, speed);
+      }
+    }
+    function celebrate() {
+      const music = document.getElementById("music");
+      music.play();
+      document.getElementById("message").innerHTML = "";
+      i = 0;
+      typeMessage();
+      launchConfetti(); launchBalloons(); launchFireworks();
+      setTimeout(() => {
+        alert("🎉 Happy Birthday, Varsha! 🎂 May your dreams come true 💖");
+      }, 333);
+    }
+    function launchConfetti() {
+      for (let j = 0; j < 80; j++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.top = Math.random() * window.innerHeight * 0.7 + "px";
+        confetti.style.width = confetti.style.height = (Math.random() * 9 + 3) + "px";
+        confetti.style.backgroundColor = `hsl(${Math.random()*360},76%,86%)`;
+        confetti.style.animationDuration = (2.7 + Math.random() * 1.2) + "s";
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3200);
+      }
+    }
+    function launchBalloons() {
+      for (let i = 0; i < 15; i++) {
+        const balloon = document.createElement("div");
+        balloon.classList.add("balloon");
+        balloon.style.left = Math.random() * (window.innerWidth * 0.94) + "px";
+        balloon.style.animationDuration = (4.6 + Math.random() * 3) + "s";
+        document.body.appendChild(balloon);
+        setTimeout(() => balloon.remove(), 7600);
+      }
+    }
+    function launchFireworks() {
+      for (let k = 0; k < 3; k++) burstFirework();
+      setTimeout(launchFireworks, 1800);
+    }
+  </script>
+</body>
+</html>
